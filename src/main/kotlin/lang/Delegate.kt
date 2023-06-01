@@ -18,6 +18,8 @@ fun main() {
     test.string = "lalala"
     print(test.string)
 
+
+
 }
 
 class Test{

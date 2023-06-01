@@ -39,6 +39,9 @@ fun reduce() {
         println("a=$a,b=$b,t=$t")
         t
     }
+    list.apply {
+
+    }
 }
 
 

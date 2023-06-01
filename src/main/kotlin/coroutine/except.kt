@@ -3,10 +3,19 @@ package coroutine
 import kotlinx.coroutines.*
 import ld
 
-fun main() = runBlocking {
-
-     exceptionForWithContext()
-     ld("end")
+fun main() {
+    val toplevelScope = CoroutineScope(Job());
+    toplevelScope.launch {
+        try {
+            val scope = CoroutineScope(Job());
+            coroutineScope{
+                throw Exception("jjj")
+            }
+        }catch (e:Exception){
+            ld("kkkk"+e.message)
+        }
+    }
+    Thread.sleep(1000)
 
 }
 
@@ -18,7 +27,7 @@ fun main() = runBlocking {
              throw Exception("lalala")
          }
      } catch (e: Exception) {
-             e.printStackTrace()
+           //  e.printStackTrace()
      }
 
  }

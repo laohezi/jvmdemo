@@ -1,10 +1,15 @@
 package rxjava
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.schedulers.Schedulers
 import ld
 
 fun main() {
-    Observable.just(1)
+    Observable.create<Int> {
+        it.onNext(1)
+        it.onComplete()
+    }
         .map{
             return@map it
         }
@@ -12,10 +17,11 @@ fun main() {
             ld("flatmap ;$it")
             return@flatMap Observable.just(it)
         }
-        .blockingFirst()
+        .subscribeOn(Schedulers.io())
+        .observeOn(Schedulers.io())
 
-
-
-
+        .subscribe {
+            ld("subscribe ;$it")
+        }
 
 }
