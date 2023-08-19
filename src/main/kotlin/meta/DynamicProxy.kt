@@ -10,6 +10,13 @@ fun main() {
    // println(" the proxy obj is $serviceProxy")
     println(serviceProxy.getFromAnatation())
     println(serviceProxy.getFromFun())
+    serviceProxy.apply {  }
+    serviceProxy.run {  }
+
+    serviceProxy.let {  }
+
+    serviceProxy.also {  }
+
 
 }
 

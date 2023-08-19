@@ -5,30 +5,42 @@ import java.util.Set;
 public class Test {
 
     public static void main(String[] args) {
-        Parent p = new Child("jj");
-        p.say();
-        p.say();
+        Test test = new Test("liming");
+        test.update(test);
+        System.out.println(test.name);
 
-        Set<Integer> set = new HashSet<>();
-        Integer[] array = set.toArray(new Integer[0]);
+    }
+
+    Test(String name) {
+        this.name = name;
     }
 
 
+    String name = "";
 
-   static class  Parent{
+    void update(Test test) {
+       test.name = "xiaolei";
+    }
+
+
+    static class Parent {
         public Parent() {
             System.out.println("Parent");
         }
-        public void say(){}
+
+        public void say() {
+        }
     }
 
-    static class Child extends Parent{
+    static class Child extends Parent {
         {
             System.out.println("代码块");
         }
-        public Child(String name){
+
+        public Child(String name) {
             System.out.println();
         }
+
         public Child() {
             super();
             System.out.println("Child");

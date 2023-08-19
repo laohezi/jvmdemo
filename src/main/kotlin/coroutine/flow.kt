@@ -1,6 +1,7 @@
 package coroutine
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import ld
 
@@ -11,12 +12,11 @@ val flow = flow<Int> {
     }
 }
 suspend fun main() {
-    coroutineScope{
-        val flowLocal = flow<Int> {
-            emit(getFromLocal().await())
-        }
-
-
+    flow.
+        buffer(3, onBufferOverflow = BufferOverflow.DROP_LATEST)
+        .
+    collect {
+        
     }
 
 }

@@ -25,15 +25,19 @@ fun main() {
 //  反转链表
 
 fun reverseList(head: ListNode?): ListNode? {
-    var pre: ListNode? = null
+    var ret: ListNode? = null
+
     var cur = head
+
     while (cur != null) {
-        val next = cur.next
-        cur.next = pre
-        pre = cur
+        var next = cur.next
+        cur.next = ret
+        ret = cur
         cur = next
     }
-    return pre
+
+    return ret
+
 }
 
 //递归反转链表

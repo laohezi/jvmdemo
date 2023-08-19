@@ -14,22 +14,9 @@ fun main() {
 class DPMLORS{
 
     fun findLength(nums1: IntArray, nums2: IntArray): Int{
-        val m = nums1.size
-        val n = nums2.size
-        val dp = Array(m+1){Array(n+1){0} }
-        var max = 0
-        for (i in  m-1 downTo 0){
-            for (j in n-1 downTo  0){
-                if (nums1[i] ==nums2[j]){
-                    dp[i][j] = dp[i+1][j+1] +1
-                }else{
-                    dp[i][j] = 0
-                }
-                max = max(max,dp[i][j])
-            }
-        }
 
-        return max
+        return 0
+
 
 
     }

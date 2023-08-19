@@ -4,6 +4,7 @@ fun main() = runBlocking {
     val scope = CoroutineScope(Job())
     val job = Job()
     val newJob = scope.launch(job) { }
+    job.cancel()
     println(newJob)
     println(job)
     println(job.children.toList())

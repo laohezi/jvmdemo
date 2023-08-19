@@ -4,7 +4,7 @@ import java.util.Stack
 
 fun main() {
     val arr = arrayOf(1,4,2,56,4,312,333,32,44,32,12,33,44,56,75,65,33,22)
-    myQuickSort(arr)
+    quickSortIt(arr)
     println(arr.joinToString())
 
 }
@@ -59,22 +59,30 @@ fun myQuickSort(arr: Array<Int>){
 
 //实现快速排序
 fun quickSortIt(arr: Array<Int>) {
-    val stack = Stack<Int>()
+   val stack = Stack<Int>()
     stack.push(0)
-    stack.push(arr.size - 1)
+    stack.push(arr.size-1)
     while (!stack.isEmpty()) {
-        val right = stack.pop()
-        val left = stack.pop()
-        if (left >= right) continue
+        var right = stack.pop()
+        var left = stack.pop()
+        if (left >= right) {
+            continue
+        }
         var i = left
         var j = right
-        var pivot = arr[i]
-        while (i < j) {
+        val pivot = arr[i]
+        while (i<j){
             while (i < j && arr[j] >= pivot) j--
-            if (i < j) arr[i] = arr[j]
+            if (i<j){ arr[i] = arr[j]}
+
             while (i < j && arr[i] < pivot) i++
-            if (i < j) arr[j] = arr[i]
+            if (i<j){
+                arr[j] = arr[i]
+            }
         }
+
+
+
         arr[i] = pivot
         stack.push(left)
         stack.push(i - 1)
@@ -87,19 +95,23 @@ fun quickSortIt(arr: Array<Int>) {
 
 
 fun quickSort(arr: Array<Int>, left: Int, right: Int) {
-    if (left >= right) return
+
     var i = left
     var j = right
-    var pivot = arr[i]
-    while (i < j) {
-        while (i < j && arr[j] >= pivot) j--
-        if (i < j) arr[i] = arr[j]
-        while (i < j && arr[i] < pivot) i++
-        if (i < j) arr[j] = arr[i]
+    if (i>=j){
+        return
     }
-    arr[i] = pivot
-    quickSort(arr, left, i - 1)
-    quickSort(arr, i + 1, right)
+    var pivot = arr[i]
+    while (i<j){
+        while (i<j && arr[j]>=pivot) j--
+        arr[i] = arr[j]
+        while (i<j && arr[i]<pivot) i++
+        arr[j] = arr[i]
+        arr[i] = pivot
+        quickSort(arr,left,i-1)
+        quickSort(arr,i+1,right)
+    }
+
 }
 
 

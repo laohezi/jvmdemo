@@ -26,4 +26,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}")
 
     testCompile("junit", "junit", "4.12")
+
+    implementation("org.bouncycastle:bcprov-jdk16:1.46")
+    implementation("com.alibaba:fastjson:1.1.36")
+    implementation("commons-codec:commons-codec:1.7")
 }

@@ -57,32 +57,31 @@ class CentralDiffusion {
 class DynamicProgramming {
 
     fun longestPalindrome(s: String): String {
-
-        val length = s.length
-        val dp = Array(length){Array(length){false}}
-
-        var maxLength = 1
-        var begin = 0
-        for (i in length-1 downTo  0){
-            for (j in i until   length){
-                if (s[i]!= s[j]){
-                    dp[i][j] = false
-                }else{
-                    if (j -i<3){
+        val n = s.length
+        val dp = Array(n){Array(n){false} }
+        var maxStatrt = 0
+        var maxEnd = 0
+        for (i  in n-1 downTo   0){
+            for (j in  0 until  n){
+                if (s[i] == s[j]){
+                    if (j-i<3){
                         dp[i][j] = true
                     }else{
                         dp[i][j] = dp[i+1][j-1]
                     }
                 }
 
-                if (dp[i][j]&& (j -i)+1 >maxLength ){
-                    begin = i
-                    maxLength = (j -i)+1
+                if (dp[i][j]&& j-i> maxEnd-maxStatrt){
+                    maxStatrt = i
+                    maxEnd = j
                 }
             }
+
         }
 
-        return s.substring(begin,begin+maxLength)
+        return s.substring(maxStatrt,maxEnd+1)
+
+
 
     }
 
