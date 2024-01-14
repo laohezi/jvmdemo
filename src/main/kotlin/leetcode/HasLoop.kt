@@ -1,40 +1,27 @@
 package leetcode
 
-fun detectCycle(head: ListNode?): ListNode? {
-    if (head ==null){
-        return  null
+
+fun main() {
+
+}
+
+fun detectCycle(head: ListNode?): ListNode?{
+    if (head == null) {
+        return null
     }
     var fast = head
     var slow = head
-
-    while (fast!=null){
+    var loopNode:ListNode? =null
+    while (fast != null) {
+        fast = fast.next?.next
         slow = slow?.next
-
-        if (fast.next ==null ){
-            return null
-        }else{
-            fast = fast.next?.next
+        if (fast!=null && fast == slow) {
+            loopNode = slow
         }
-
-        if (fast == slow){
-            var ptr = head
-            while (slow != ptr){
-                ptr = ptr?.next
-                slow = slow?.next
-            }
-            return  ptr
-        }
-
     }
 
-    return null
 
 
-
-
-
-
-
-
+    return loopNode
 
 }

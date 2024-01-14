@@ -22,21 +22,37 @@ fun main() {
 }
 
 
-//  反转链表
+//  不拿出直接反转
 
 fun reverseList(head: ListNode?): ListNode? {
-    var ret: ListNode? = null
 
-    var cur = head
-
-    while (cur != null) {
-        var next = cur.next
-        cur.next = ret
-        ret = cur
-        cur = next
+    var dumyTail = head
+    var dumyHead = head
+    while (dumyTail?.next != null) {
+        var current = dumyTail.next!!
+        var next = current.next
+        current.next = dumyHead
+        dumyHead = current
+        dumyTail.next = next
     }
 
-    return ret
+    return dumyHead
+
+}
+
+// 创建新的链表来反转
+
+fun reverseList1(head: ListNode?): ListNode? {
+    var dummyHead: ListNode? = null
+    var current = head
+    while (current != null) {
+        var next = current?.next
+        current.next = dummyHead
+        dummyHead = current
+        current = next
+    }
+
+    return dummyHead
 
 }
 

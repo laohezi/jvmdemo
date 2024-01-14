@@ -1,9 +1,11 @@
 package leetcode
 
+import kotlin.math.abs
+
 
 fun main(args: Array<String>) {
     val solution = DynamicProgramming()
-    val s = "aaaaaaaaaa"
+    val s = "babad"
     val res = solution.longestPalindrome(s)
     println(res)
 
@@ -58,29 +60,30 @@ class DynamicProgramming {
 
     fun longestPalindrome(s: String): String {
         val n = s.length
-        val dp = Array(n){Array(n){false} }
+        val dp = Array(n) { Array(n) { false } }
         var maxStatrt = 0
         var maxEnd = 0
-        for (i  in n-1 downTo   0){
-            for (j in  0 until  n){
-                if (s[i] == s[j]){
-                    if (j-i<3){
-                        dp[i][j] = true
-                    }else{
-                        dp[i][j] = dp[i+1][j-1]
-                    }
-                }
+        for (i in 0 until  n){
+            dp[i][i] = true
+        }
 
-                if (dp[i][j]&& j-i> maxEnd-maxStatrt){
+        for (i in n-1 downTo   0) {
+            for (j in i+1 until n) {
+                if (s[i] == s[j]) {
+                    if (j - i < 3) {
+                        dp[i][j] = true
+                    } else {
+                        dp[i][j] = dp[i + 1][j - 1]
+                    }
+
+                }
+                if (dp[i][j] && (j-i) > (maxEnd - maxStatrt)) {
                     maxStatrt = i
                     maxEnd = j
                 }
             }
-
         }
-
-        return s.substring(maxStatrt,maxEnd+1)
-
+        return s.substring(maxStatrt, maxEnd + 1)
 
 
     }
