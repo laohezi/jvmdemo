@@ -1,15 +1,18 @@
 package leetcode
 
 fun main() {
-    val map = LinkedHashMap<Int, Int>(64, 1f, true)
-    map.put(1, 1)
-    map.put(3, 3)
-    map.put(2, 2)
-    map.get(1)
-    map.get(2)
-    map.get(3)
-    map.get(2)
-    map.get(1)
+   val cache = LRUCache(2)
+    cache.put(1,1)
+    cache.put(2,2)
+    cache.get(1)
+    cache.put(3,3)
+    cache.get(2)
+    cache.put(4,4)
+    cache.get(1)
+    cache.get(3)
+    cache.get(4)
+
+
 
 
 }
@@ -45,9 +48,15 @@ class LinkedLRUCache(capacity: Int) {
 
 class LRUCache(capacity: Int) {
     val capacity: Int
-    val cache = HashMap<Int, DLinkNode>()
-    val dummyHead = DLinkNode(0, 0, null, null)
-    val dummyTail = DLinkNode(0, 0, null, null)
+    val cache = HashMap<Int, DLinkNode?>()
+    val dummyTail = DLinkNode(
+        -1,-1,null,null
+    )
+     val dummyHead = DLinkNode(
+         -1,-1,null,null
+     )
+
+
     var size = 0
 
     init {
@@ -66,54 +75,53 @@ class LRUCache(capacity: Int) {
 
 
     fun get(key: Int): Int {
-        if (cache.containsKey(key)) {
-            val node = cache[key]!!
-            moveToHead(node)
-            return node.value
-        }
-
-        return -1
-
+       val value = cache.get(key)
+        if (value ==null) return -1
+        moveToHead(value)
+        return  value.value
     }
 
     fun put(key: Int, value: Int) {
-
-        if (cache.containsKey(key)) {
-            val node = cache.get(key)!!
-            node.value = value
-            cache.put(key, node)
-            moveToHead(node)
-        } else {
-            val node = DLinkNode(key, value, null, null)
-            cache.put(key, node)
-            moveToHead(node)
+        val hint = cache.get(key)
+        if (hint!=null){
+            hint.value = value
+            moveToHead(hint)
+        }else{
+            val node = DLinkNode(key,value,dummyHead,dummyHead.next)
+            dummyHead.next!!.pre = node
+            dummyHead.next = node
             size++
+            cache.put(key,node)
+            if (size>capacity){
+                removeTail()
+                size--
+            }
         }
-        if (size > capacity) {
-            val lastNode = dummyTail.pre!!
 
-            removeNode(lastNode)
-            cache.remove(lastNode.key)
-            size--
+
+
+    }
+
+    fun moveToHead(node:DLinkNode){
+        if (node.pre !=dummyHead){
+            node.pre!!.next = node.next
+            node.next?.pre = node.pre
+            node.pre = dummyHead
+            node.next = dummyHead.next
+            dummyHead.next = node
         }
     }
 
-    fun moveToHead(node: DLinkNode) {
-        removeNode(node)
-        node.pre = dummyHead
-        dummyHead.next?.apply {
-            pre = node
-            node.next = this
+    fun removeTail(){
+        val tail = dummyTail.pre
+        if (tail != dummyHead){
+            cache.remove(tail!!.key)
+            tail.pre!!.next = dummyTail
+            dummyTail.pre = tail.pre
+            tail.next = null
+            tail.pre = null
         }
-        dummyHead.next = node
     }
-
-    fun removeNode(node: DLinkNode) {
-
-        node.next?.pre = node.pre
-        node.pre?.next = node.next
-    }
-
 
 }
 
