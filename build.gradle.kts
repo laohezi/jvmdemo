@@ -1,6 +1,6 @@
 
 
-val  kotlin_version = "1.6.10"
+val  kotlin_version = "1.9.20"
 
 plugins {
     java
@@ -27,7 +27,5 @@ dependencies {
 
     testCompile("junit", "junit", "4.12")
 
-    implementation("org.bouncycastle:bcprov-jdk16:1.46")
-    implementation("com.alibaba:fastjson:1.1.36")
     implementation("commons-codec:commons-codec:1.7")
 }

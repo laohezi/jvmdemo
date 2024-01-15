@@ -48,7 +48,7 @@ class LinkedLRUCache(capacity: Int) {
 
 class LRUCache(capacity: Int) {
     val capacity: Int
-    val cache = HashMap<Int, DLinkNode?>()
+    val cache = HashMap<Int, DLinkNode>()
     val dummyTail = DLinkNode(
         -1,-1,null,null
     )
@@ -108,6 +108,7 @@ class LRUCache(capacity: Int) {
             node.next?.pre = node.pre
             node.pre = dummyHead
             node.next = dummyHead.next
+            dummyHead.next!!.pre = node
             dummyHead.next = node
         }
     }
