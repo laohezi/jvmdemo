@@ -97,9 +97,6 @@ class LRUCache(capacity: Int) {
                 size--
             }
         }
-
-
-
     }
 
     fun moveToHead(node:DLinkNode){
