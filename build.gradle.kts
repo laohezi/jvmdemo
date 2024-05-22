@@ -1,6 +1,6 @@
 
 
-val  kotlin_version = "1.9.20"
+val  kotlin_version = "1.6.10"
 
 plugins {
     java
