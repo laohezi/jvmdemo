@@ -13,12 +13,12 @@ object  Rxbus{
 
 
 
-    fun <T>post(message:Message<T>){
+    fun <T: Any> post(message: Message<T>) {
         subject.onNext(message)
     }
 
-     fun <T>toObservable(clz:Class<T>):Observable<T>{
-        return  this.subject.ofType(clz)
+    fun <T: Any> toObservable(clz: Class<T>): Observable<T> {
+        return this.subject.ofType(clz)
     }
 
 
@@ -27,4 +27,4 @@ object  Rxbus{
 }
 
 
-data  class Message<T>(val key:String,val value:Any?)
+data class Message<T: Any>(val key: String, val value: T?)

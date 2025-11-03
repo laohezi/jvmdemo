@@ -1,0 +1,154 @@
+# Gradle files
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+!gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+gradlew.bat
+
+# Java and Kotlin compiled files
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Log files
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Virtual machine crash logs
+hs_err_pid*
+
+# IDE files
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Cache and backup files
+*.cache
+*.bak
+*.backup
+*~
+
+# Maven target directory (if you also use Maven)
+target/
+
+# Kotlin/Native
+*.kexe
+*.klib
+
+# Kotlin Multiplatform
+*.podspec
+
+# Android (if applicable)
+*.apk
+*.ap_
+*.aab
+local.properties
+proguard/
+
+# Generated files
+/captures/
+.externalNativeBuild/
+.cxx/
+
+# Signing files
+*.jks
+*.keystore
+
+# Google Services (if applicable)
+google-services.json
+
+# Firebase (if applicable)
+google-services.json
+GoogleService-Info.plist
+
+# Runtime and test files
+*.hprof
+*.dex
+*.ap_
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment and config files
+.env
+.env.local
+.env.*.local
+config.properties
+application-local.properties
+
+# Documentation
+docs/build/
+
+# Test results
+test-results/
+*.xml
+
+# Coverage reports
+coverage/
+*.coverage
+*.lcov
+
+# Dependency directories
+node_modules/
